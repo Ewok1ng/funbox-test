@@ -1,0 +1,55 @@
+@import '../../scss/variables';
+
+.weight {
+    position: absolute;
+    right: 16px;
+    bottom: 16px;
+
+    width: 80px;
+    height: 80px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 21px;
+    line-height: 22px;
+
+    color: $color-white;
+    background: $color-blue-1;
+    border-radius: 50%;
+
+    transition: .2s background-color ease-in-out;
+
+    &__value {
+        font-weight: 400;
+        font-size: 42px;
+        line-height: 22px;
+    }
+}
+
+.product--selected  {
+    .weight {
+        background-color: $color-red-1;
+    }
+}
+
+.product--selected:hover {
+    .weight {
+        background-color: $color-red-2;
+    }
+}
+
+.product:not(.product--selected):not(.product--disabled):hover {
+    .weight {
+        background-color: $color-blue-2;
+    }
+}
+
+.product--disabled,
+.product--disabled:hover {
+    .weight {
+        background-color: $color-disabled;
+    }
+}

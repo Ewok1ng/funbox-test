@@ -1,0 +1,179 @@
+@import '../../scss/variables';
+
+.product {
+    position: relative;
+    
+    width: 320px;
+    height: 509px;
+    
+    background: transparent;
+
+    &:hover {
+        .product__card {
+            border-color: $color-blue-2;
+
+            &::before {
+                border-top-color: $color-blue-2;
+            }
+        }
+    }
+    
+    &__card {
+        position: relative;
+        margin-bottom: 14px;
+        
+        width: 320px;
+        height: 480px;
+        
+        background-color: $product-bg;
+        border: 4px solid $color-blue-1;
+        border-radius: 12px;
+        clip-path: polygon(0 43px, 43px 0,100% 0,100% 100%,0 100%);
+
+        overflow: hidden;
+        cursor: pointer;
+
+        transition: .2s border-color ease-in-out;
+        
+        &::before {
+            content: '';
+
+            position: absolute;
+            top: 0;
+            left: 0;
+
+            width: 0;
+            height: 0;
+
+            border-top: 41px solid $color-blue-1;
+            border-right: 41px solid transparent;
+
+            transition: .2s border-color ease-in-out;
+
+        }
+    }
+
+    &__card-info {
+        margin-top: 21px;
+        margin-left: 47px;
+    }
+
+    &__subtitle {
+        margin-bottom: 5px;
+
+        font-size: 16px;
+        line-height: 19px;
+        color: $color-gray;
+    }
+
+    &__title {
+        margin-left: -3px;
+
+        font-weight: 700;
+        font-size: 48px;
+        line-height: 56px;
+
+        color: $color-black;
+    }
+
+    &__type {
+        margin-bottom: 15px;
+
+        font-weight: 700;
+        font-size: 24px;
+        line-height: 28px;
+
+        color: $color-black;
+    }
+
+    &__benefits {
+        list-style: none;
+    }
+
+    &__benefits-item {
+        font-size: 14px;
+        line-height: 16px;
+
+        color: $color-gray;
+    }
+
+
+    &__card-img {
+        position: absolute;         
+        top: 208px;
+        left: -24px;
+    }
+
+    &__link {
+        font-size: 13px;
+        line-height: 15px;
+
+        color: $color-white;
+
+        text-align: center;
+        cursor: default;
+        
+        span {
+            text-decoration: underline dashed;
+            color: $color-blue-1;
+            cursor: pointer;
+        }
+    }
+
+    &--selected {
+        .product__card {
+            border-color: $color-red-1;
+
+            &::before {
+                border-top-color: $color-red-1;
+            }
+        }
+
+        &:hover {
+            .product__card {
+                border-color: $color-red-2;
+
+                &::before {
+                    border-top-color: $color-red-2;
+                }
+            }
+        }
+    }
+
+    &--disabled {
+        .product__subtitle,
+        .product__title,
+        .product__type,
+        .product__benefits {
+            color: $color-disabled;
+        }
+
+        .product__card {
+            border-color: $color-disabled;
+
+            cursor: not-allowed;
+
+            &::before {
+                border-top-color: $color-disabled;
+            }
+        }
+
+        .product__card-img {
+            opacity: 0.5;
+        }
+
+        .product__link span{
+            cursor: not-allowed;
+        }
+
+        &:hover {
+            .product__card {
+                border-color: $color-disabled;
+
+                &::before {
+                    border-top-color: $color-disabled;
+                }
+            }
+        }
+    }
+}
