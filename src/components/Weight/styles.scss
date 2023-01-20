@@ -35,7 +35,7 @@
     }
 }
 
-.product--selected:hover {
+.product--selected:not(.nohover):hover {
     .weight {
         background-color: $color-red-2;
     }

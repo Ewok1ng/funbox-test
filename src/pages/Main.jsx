@@ -13,7 +13,7 @@ export default function Main() {
                 <h3 className="title title--main">Ты сегодня покормил кота?</h3>
                 <div className="products">
                     {products.map((product) => (
-                        <Product id={product.id} {...product} />
+                        <Product key={product.id} {...product} />
                     ))}
                 </div>
             </div>

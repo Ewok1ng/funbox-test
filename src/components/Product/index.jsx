@@ -6,7 +6,7 @@ import Weight from '../Weight';
 
 export default function Product({ type, weight, description, benefits, disabled }) {
     const [isSelected, setSelected] = React.useState(false);
-    const [isHovered, setHovered] = React.useState(false);
+    const [subtitle, setSubtitle] = React.useState('Сказочное заморское яство');
 
     const productRef = React.useRef(null);
     const subtitleRef = React.useRef(null);
@@ -16,39 +16,43 @@ export default function Product({ type, weight, description, benefits, disabled 
     const onSelectProduct = () => {
         if (!disabled) {
             setSelected((prev) => !prev);
+        }
+    };
 
-            if (productRef.current.className.includes('product--selected')) {
-                subtitleRef.current.textContent = 'Сказочное заморское яство';
-                subtitleRef.current.style.color = '#666666';
-            }
+    const onMouseEnter = () => {
+        if (isSelected && !productRef.current.classList.contains('nohover')) {
+            setSubtitle('Котэ не одобряет');
+        }
+    };
+
+    const onMouseLeave = () => {
+        if (!disabled && isSelected) {
+            productRef.current.classList.remove('nohover');
+            setSubtitle('Сказочное заморское яство');
         }
     };
 
     React.useEffect(() => {
-        if (isHovered) {
-            if (productRef.current.className.includes('product--selected')) {
-                subtitleRef.current.textContent = 'Котэ не одобряет?';
-                subtitleRef.current.style.color = '#E52E7A';
-            }
-        } else {
-            if (productRef.current.className.includes('product--selected')) {
-                subtitleRef.current.textContent = 'Сказочное заморское яство';
-                subtitleRef.current.style.color = '#666666';
-            }
+        if (isSelected) {
+            productRef.current.classList.add('nohover');
         }
-    }, [isHovered]);
+
+        if (!isSelected) {
+            setSubtitle('Сказочное заморское яство');
+        }
+    }, [isSelected]);
 
     return (
         <div
             className={disabled ? 'product product--disabled' : productClassName}
-            onMouseEnter={() => setHovered(true)}
-            onMouseLeave={() => setHovered(false)}
+            onMouseEnter={onMouseEnter}
+            onMouseLeave={onMouseLeave}
             ref={productRef}
         >
             <div className="product__card" onClick={onSelectProduct}>
                 <div className="product__card-info">
                     <p className="product__subtitle" ref={subtitleRef}>
-                        Сказочное заморское яство
+                        {subtitle}
                     </p>
                     <h2 className="product__title">Нямушка</h2>
                     <p className="product__type">{type.name}</p>
