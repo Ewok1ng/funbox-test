@@ -64,6 +64,8 @@
         font-size: 16px;
         line-height: 19px;
         color: $color-gray;
+
+        transition: .2s color ease-in-out;
     }
 
     &__title {
@@ -121,6 +123,7 @@
     }
 
     &--selected {
+        &.nohover .product__card,
         .product__card {
             border-color: $color-red-1;
 
@@ -129,13 +132,17 @@
             }
         }
 
-        &:hover {
+        &:not(.nohover):hover {
             .product__card {
                 border-color: $color-red-2;
 
                 &::before {
                     border-top-color: $color-red-2;
                 }
+            }
+
+            .product__subtitle {
+                color: $color-red-2;
             }
         }
     }
